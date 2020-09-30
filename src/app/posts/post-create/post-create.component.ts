@@ -11,9 +11,9 @@ export class PostCreateComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  newPost = 'NO CONTENT'
+  enteredValue = '';
+  newPost = 'NO CONTENT';
   onAddPost(){
-    this.newPost = 'The User\'s new post!';
+    this.newPost = this.enteredValue;
   }
 }
