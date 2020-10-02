@@ -15,7 +15,7 @@ export class PostCreateComponent implements OnInit {
   }
   enteredTitle = '';
   enteredContent = '';
-  @Output() postCreated = new EventEmitter <Post>();
+  @Output() postCreated = new EventEmitter();
 
   onAddPost(form: NgForm){
     if (form.invalid) {
