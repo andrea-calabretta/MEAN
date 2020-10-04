@@ -4,6 +4,7 @@ const app = express();
 
 app.use((req, res, next) => {
   console.log('First Middleware!');
+  console.log(req.method, req.path) //vediamo perchè il middleware esegue 2 volte: c'è anche la richiesta del favicon, ecco perchè
   next();
 });
 
