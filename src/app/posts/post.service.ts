@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {Subject } from 'rxjs';
 import { Post } from './post.model';
@@ -7,9 +8,17 @@ export class PostService{
   private posts: Post[] = [] ;
   private postsUpdated = new Subject<Post[]>();
 
+  constructor(private http: HttpClient) {
+
+  }
+
 
   getPosts(){
-    return [...this.posts]; //ritorna un array che contiene i dati dell'array puntato da this.post (puntatore), in questo modo se si modifica il nuovo array, quello vecchio resta immutato
+    this.http.get<{message: string, posts: Post[]}>('http://localhost:4200/api/posts')
+    .subscribe((postData) => {
+      this.posts = postData.posts;
+      this.postsUpdated.next([...this.posts]);
+    });
   }
 
   getPostUpdateListener(){
@@ -17,11 +26,13 @@ export class PostService{
   }
   addPost(title: string, content: string){
     const post: Post = {
+      id: null,
       title: title,
       content: content
     };
     this.posts.push(post);
     this.postsUpdated.next([...this.posts]);
+
 
   }
 }
