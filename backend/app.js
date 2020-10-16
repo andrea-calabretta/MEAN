@@ -16,7 +16,6 @@ mongoose.connect("mongodb+srv://ziocal:BvE62A725iOMAG5h@cluster0.fe3ie.mongodb.n
   console.log('Connection failed!');
 });
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));
 
