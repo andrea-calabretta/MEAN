@@ -2,10 +2,20 @@
 // IP -> 79.42.105.225
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const Post = require('./models/post');
 
 const app = express();
+
+mongoose.connect("mongodb+srv://ziocal:BvE62A725iOMAG5h>@cluster0.fe3ie.mongodb.net/<dbname>?retryWrites=true&w=majority")
+.then(() => {
+  console.log('Connceted to database!')
+})
+.catch(() => {
+  console.log('Conncetion failed!');
+})
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended : false }));
