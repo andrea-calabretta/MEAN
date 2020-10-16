@@ -8,13 +8,13 @@ const Post = require('./models/post');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://ziocal:BvE62A725iOMAG5h>@cluster0.fe3ie.mongodb.net/<dbname>?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://ziocal:BvE62A725iOMAG5h@cluster0.fe3ie.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true} )
 .then(() => {
-  console.log('Connceted to database!')
+  console.log('Connected to database!');
 })
 .catch(() => {
-  console.log('Conncetion failed!');
-})
+  console.log('Connection failed!');
+});
 
 
 app.use(bodyParser.json());
