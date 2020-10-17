@@ -8,7 +8,7 @@ const Post = require('./models/post');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://ziocal:BvE62A725iOMAG5h@cluster0.fe3ie.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true} )
+mongoose.connect("mongodb+srv://ziocal:BvE62A725iOMAG5h@cluster0.fe3ie.mongodb.net/node-angular?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true} )
 .then(() => {
   console.log('Connected to database!');
 })
@@ -33,11 +33,11 @@ app.use((req, res, next) => {
 });
 
 app.post("/api/posts", (req, res, next) => {
-  const posts = new Post({
+  const post = new Post({
     title: req.body.title,
     content: req.body.content
   });
-  console.log(posts);
+  post.save();
   res.status(201).json( {
     message: 'Post added successfully'
   });
