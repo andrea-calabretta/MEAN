@@ -37,7 +37,8 @@ export class PostService{
   getPostUpdateListener(){
     return this.postsUpdated.asObservable();
   }
-  addPost(title: string, content: string){
+  addPost(title: string, content: string)
+  {
     const post: Post = {
       id: null,
       title: title,
@@ -50,7 +51,13 @@ export class PostService{
 
     this.posts.push(post);
     this.postsUpdated.next([...this.posts]);
+  }
 
-
+  deletePost(postId: string)
+  {
+    this.http.delete("http://localhost:3000/api/posts/" + postId)
+    .subscribe(() => {
+      console.log('Deleted!');
+    })
   }
 }

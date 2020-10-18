@@ -44,13 +44,18 @@ app.post("/api/posts", (req, res, next) => {
 
 });
 
-app.use('/api/posts', (req, res, next) => {
+app.get("/api/posts", (req, res, next) => {
   Post.find().then(documents => {
     res.status(200).json({
       message: "Posts fetched successfully",
       posts: documents
     });
   });
+});
+
+app.delete("/api/posts/:id", (req, res , next) => {
+  console.log(req.params.id);
+  res.status(200).json({ message : 'Post Deleted!'});
 });
 
 module.exports = app; //in questo modo esportiamo anche tutti i middleware
