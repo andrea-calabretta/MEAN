@@ -37,10 +37,13 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   });
-  post.save();
-  res.status(201).json( {
-    message: 'Post added successfully'
+  post.save().then( createdPost => {
+    res.status(201).json( {
+      message: 'Post added successfully',
+      postId: createdPost._id
+    });
   });
+
 
 });
 
@@ -54,8 +57,10 @@ app.get("/api/posts", (req, res, next) => {
 });
 
 app.delete("/api/posts/:id", (req, res , next) => {
-  console.log(req.params.id);
-  res.status(200).json({ message : 'Post Deleted!'});
+  Post.deleteOne({ _id: req.params.id, }).then(result => {
+    console.log(result);
+    res.status(200).json({ message : "Post deleted!"})
+  });
 });
 
 module.exports = app; //in questo modo esportiamo anche tutti i middleware
