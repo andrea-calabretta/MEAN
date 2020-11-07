@@ -40,10 +40,9 @@ router.post("", multer({storage: storage}).single("image"), (req, res, next) => 
     res.status(201).json( {
       message: 'Post added successfully',
       post:{
+        ...createdPost,
         id: createdPost._id,
-        title: createdPost.title,
-        content: createdPost.content,
-        imagePath: createdPost.imagePath
+
       }
     });
   });
